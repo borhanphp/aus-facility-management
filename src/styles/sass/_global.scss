@@ -1,0 +1,43 @@
+// customize scrollbar
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e5e5e5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 100px;
+
+  &:hover {
+    background: #7f7f7f;
+  }
+}
+
+// make scroll smooth
+// html {
+//   scroll-behavior: smooth;
+// }
+
+// customize react-toastify
+// .Toastify__toast {
+//   border-radius: 8px !important;
+
+//   display: flex !important;
+//   align-items: center !important;
+//   justify-content: center !important;
+
+//   .Toastify__toast-body {
+//     display: flex !important;
+//     align-items: center !important;
+//     justify-content: center !important;
+//     flex: 0 0 auto !important;
+//   }
+
+//   button {
+//     display: none !important;
+//   }
+// }

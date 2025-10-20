@@ -1,0 +1,50 @@
+:root {
+  --font-primary: 'Geist Sans';
+
+  --nav-height: 96px;
+  --nav-height-with-padding: 156px;
+  --footer-height: 536px;
+  --mobile-nav-height: 50px;
+
+  --max-width: 1440px;
+
+  --green-primary: #348c00;
+  --green-primary-deep: #1b5e00;
+  --green-primary-light: #51a21a;
+  --green-primary-lighter: #d6e8cc;
+
+  --text-primary: #444444;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Geist Sans';
+}
+
+html {
+  text-rendering: optimizeSpeed;
+}
+
+body {
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+}
