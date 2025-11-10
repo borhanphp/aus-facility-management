@@ -19,7 +19,7 @@ export const Section1 = () => {
   return (
     <HeaderContainer>
       <Image
-        src="/images/header-bg.png"
+        src="/images/header-bg.webp"
         alt="Professional Facility Management Services in Sydney"
         layout="fill"
         priority
