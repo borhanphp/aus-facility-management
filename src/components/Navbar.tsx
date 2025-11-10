@@ -96,6 +96,8 @@ export const NavContainer = styled.nav`
   justify-content: space-between;
   align-items: end;
   padding: calc((var(--nav-height-with-padding) - var(--nav-height)) / 2) 0;
+  position: relative;
+  z-index: 100;
 
   div.logo {
     height: var(--nav-height);
@@ -156,7 +158,7 @@ export const MegaMenu = styled.div`
   background-color: rgba(255, 255, 255, 1);
   border-radius: 8px;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  z-index: 101;
   border: 1px solid var(--green-primary-light);
   width: 650px;
   transition:

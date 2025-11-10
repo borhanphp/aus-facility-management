@@ -77,7 +77,7 @@ const NavContainer = styled.nav`
   padding: 5px 1.5%;
   position: sticky;
   top: 0;
-  z-index: 4;
+  z-index: 100;
   background-color: white;
 
   @media (max-width: 1150px) {
@@ -96,7 +96,7 @@ const NavItemsContainer = styled.div`
   background-color: white;
   top: 50px;
   left: 0;
-  z-index: 1;
+  z-index: 101;
   transition: height 0.2s linear;
   overflow: hidden;
   padding-left: 1.5%;
