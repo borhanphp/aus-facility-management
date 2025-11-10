@@ -13,7 +13,6 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   // Performance optimizations
-  swcMinify: true,
   compress: true,
   poweredByHeader: false,
   // Optimize production builds

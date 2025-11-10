@@ -75,42 +75,33 @@ class MyDocument extends Document {
           <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
           
           {/* Preload critical images */}
-          <link rel="preload" as="image" href="/images/header-bg.png" fetchPriority="high" />
+          <link rel="preload" as="image" href="/images/header-bg.png" />
 
-          {/* Optimized font loading with font-display swap */}
-          <link
-            rel="preload"
-            href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/400.min.css"
-            as="style"
-          />
+          {/* Optimized font loading - critical font loaded immediately, others deferred */}
           <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/400.min.css"
-            media="print"
-            onLoad="this.media='all'"
           />
-          <noscript>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/400.min.css" />
-          </noscript>
           
-          {/* Load other font weights asynchronously */}
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/300.min.css"
-            media="print"
-            onLoad="this.media='all'"
-          />
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/500.min.css"
-            media="print"
-            onLoad="this.media='all'"
-          />
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/600.min.css"
-            media="print"
-            onLoad="this.media='all'"
+          {/* Defer non-critical font weights */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function() {
+                  var fonts = [
+                    'https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/300.min.css',
+                    'https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/500.min.css',
+                    'https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/600.min.css'
+                  ];
+                  fonts.forEach(function(font) {
+                    var link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = font;
+                    document.head.appendChild(link);
+                  });
+                })();
+              `,
+            }}
           />
         </Head>
 
