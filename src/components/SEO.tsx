@@ -64,8 +64,10 @@ export const SEO: React.FC<SEOProps> = ({
 
       {/* Additional Meta */}
       <meta name="sitemap" content="https://www.ausfacility.com.au/sitemap.xml" />
-      <meta name="google-site-verification" content="google-site-verification=KVTToUtx8h4av9PVkwJXng5E5NsPhuCX-wD_vXmViiQ" />
+      <meta
+        name="google-site-verification"
+        content="google-site-verification=KVTToUtx8h4av9PVkwJXng5E5NsPhuCX-wD_vXmViiQ"
+      />
     </Head>
   );
 };
-

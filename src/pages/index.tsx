@@ -1,14 +1,29 @@
+import dynamic from 'next/dynamic';
 import MotionWrapper from '../framer-motion/MotionWrapper';
 import { Section1 } from '../page-components/home/Section1';
 import { Section2 } from '../page-components/home/Section2';
-import { Section3 } from '../page-components/home/Section3';
-import { Section4 } from '../page-components/home/Section4';
-import { Section5 } from '../page-components/home/Section5';
-import { ReviewsSection } from '../page-components/home/ReviewsSection';
-import { WhyChooseUsSection } from '../page-components/home/WhyChooseUsSection';
-import { OurWorkProcessSection } from '../page-components/home/OurWorkProcessSection';
 import { SEO } from '../components/SEO';
 import { StructuredData } from '../components/StructuredData';
+
+// Lazy load below-the-fold components
+const Section3 = dynamic(() => import('../page-components/home/Section3').then(mod => ({ default: mod.Section3 })), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
+const Section4 = dynamic(() => import('../page-components/home/Section4').then(mod => ({ default: mod.Section4 })), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
+const Section5 = dynamic(() => import('../page-components/home/Section5').then(mod => ({ default: mod.Section5 })), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
+const WhyChooseUsSection = dynamic(() => import('../page-components/home/WhyChooseUsSection').then(mod => ({ default: mod.WhyChooseUsSection })), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
+const ReviewsSection = dynamic(() => import('../page-components/home/ReviewsSection').then(mod => ({ default: mod.ReviewsSection })), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
+const OurWorkProcessSection = dynamic(() => import('../page-components/home/OurWorkProcessSection').then(mod => ({ default: mod.OurWorkProcessSection })), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
 
 export default function Home() {
   const localBusinessSchema = {

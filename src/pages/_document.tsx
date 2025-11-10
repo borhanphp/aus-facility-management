@@ -70,13 +70,48 @@ class MyDocument extends Document {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
           />
 
-          {/* add keywords for google search */}
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/100.min.css" />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/200.min.css" />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/300.min.css" />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/400.min.css" />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/500.min.css" />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/600.min.css" />
+          {/* Preconnect to external domains */}
+          <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+          <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+          
+          {/* Preload critical images */}
+          <link rel="preload" as="image" href="/images/header-bg.png" fetchPriority="high" />
+
+          {/* Optimized font loading with font-display swap */}
+          <link
+            rel="preload"
+            href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/400.min.css"
+            as="style"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/400.min.css"
+            media="print"
+            onLoad="this.media='all'"
+          />
+          <noscript>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/400.min.css" />
+          </noscript>
+          
+          {/* Load other font weights asynchronously */}
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/300.min.css"
+            media="print"
+            onLoad="this.media='all'"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/500.min.css"
+            media="print"
+            onLoad="this.media='all'"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/600.min.css"
+            media="print"
+            onLoad="this.media='all'"
+          />
         </Head>
 
         <body>
