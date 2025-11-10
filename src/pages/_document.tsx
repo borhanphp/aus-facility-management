@@ -65,19 +65,16 @@ class MyDocument extends Document {
           <link rel="manifest" href="/site.webmanifest" />
 
           {/* Organization Schema */}
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-          />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
 
           {/* Preconnect to external domains */}
           <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
           <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-          
-          {/* Preload critical images */}
-          <link rel="preload" as="image" href="/images/header-bg.png" />
 
-          {/* Optimized font loading with font-display swap */}
+          {/* Preload critical images */}
+          <link rel="preload" as="image" href="/images/header-bg.webp" />
+
+          {/* Optimized font loading - async with font-display swap */}
           <link
             rel="preload"
             href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/files/geist-sans-latin-400-normal.woff2"
@@ -92,21 +89,21 @@ class MyDocument extends Document {
                   font-family: 'Geist Sans';
                   font-style: normal;
                   font-weight: 400;
-                  font-display: swap;
+                  font-display: optional;
                   src: url(https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/files/geist-sans-latin-400-normal.woff2) format('woff2');
                 }
                 @font-face {
                   font-family: 'Geist Sans';
                   font-style: normal;
                   font-weight: 300;
-                  font-display: swap;
+                  font-display: optional;
                   src: url(https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/files/geist-sans-latin-300-normal.woff2) format('woff2');
                 }
                 @font-face {
                   font-family: 'Geist Sans';
                   font-style: normal;
                   font-weight: 600;
-                  font-display: swap;
+                  font-display: optional;
                   src: url(https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/files/geist-sans-latin-600-normal.woff2) format('woff2');
                 }
               `,

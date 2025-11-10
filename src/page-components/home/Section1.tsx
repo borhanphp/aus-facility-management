@@ -26,6 +26,8 @@ export const Section1 = () => {
         quality={85}
         objectFit="cover"
         objectPosition="center"
+        placeholder="blur"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
       />
       <div className="overlay" />
       <div className="content">
