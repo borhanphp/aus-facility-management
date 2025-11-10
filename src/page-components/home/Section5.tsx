@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 import { GetFreeQuote } from '../../components/GetFreeQuote';
 import { FADE_IN_WHILE_IN_VIEW } from '../../constants/animations';
@@ -9,11 +10,15 @@ export const Section5 = () => {
     <Container>
       <div>
         <LeftSection>
-          <motion.img
-            {...FADE_IN_WHILE_IN_VIEW({ index: 0, as: motion.img })}
-            src="/images/home-4.png"
-            alt="placeholder"
-          />
+          <motion.div className="image-wrapper" {...FADE_IN_WHILE_IN_VIEW({ index: 0, as: motion.div })}>
+            <Image
+              src="/images/home-4.png"
+              alt="Trusted facility management provider in Sydney"
+              layout="fill"
+              quality={85}
+              objectFit="cover"
+            />
+          </motion.div>
           <LeftInner {...FADE_IN_WHILE_IN_VIEW({ index: 1, as: motion.div })}>
             <div>
               <h4>10+</h4>
@@ -77,17 +82,16 @@ const LeftSection = styled.div`
     width: 100%;
   }
 
-  img {
+  .image-wrapper {
     width: 582px;
     height: 540px;
     border-radius: 15px;
-    object-fit: cover;
+    overflow: hidden;
+    position: relative;
 
     @media (max-width: 1200px) {
       width: 100%;
       max-height: 400px;
-      object-fit: cover;
-      object-position: center;
     }
 
     @media (max-width: 768px) {

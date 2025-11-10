@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { TopHeader } from '../../components/TopHeader';
 import { GetFreeQuote } from '../../components/GetFreeQuote';
@@ -10,7 +12,8 @@ import { FADE_IN_WHILE_IN_VIEW } from '../../constants/animations';
 import { SEO } from '../../components/SEO';
 import { StructuredData } from '../../components/StructuredData';
 import { Breadcrumb } from '../../components/Breadcrumb';
-import Link from 'next/link';
+import { FAQSection } from '../../components/FAQSection';
+import { SERVICE_FAQS } from '../../constants/faqs';
 
 export default function SubServicePage() {
   const router = useRouter();
@@ -93,6 +96,10 @@ export default function SubServicePage() {
   // Get related services (exclude current service)
   const relatedServices = SERVICES.filter((s) => s.link !== service.link).slice(0, 3);
 
+  // Get FAQ data for this service
+  const serviceSlug = router.query.service as string;
+  const faqs = SERVICE_FAQS[serviceSlug as keyof typeof SERVICE_FAQS] || [];
+
   return (
     <>
       <SEO
@@ -121,7 +128,15 @@ export default function SubServicePage() {
         <SubServiceCardWrapper>
           {service?.subServices.map((subService, index) => (
             <SubServiceCard {...FADE_IN_WHILE_IN_VIEW({ index, as: motion.div })} key={subService.service}>
-              <img src={subService.image} alt={`${subService.service} - ${service.name} Sydney`} />
+              <div className="image-wrapper">
+                <Image
+                  src={subService.image}
+                  alt={`${subService.service} - ${service.name} Sydney`}
+                  layout="fill"
+                  quality={85}
+                  objectFit="cover"
+                />
+              </div>
               <h3>{subService.service}</h3>
               <p>{subService.description}</p>
 
@@ -130,13 +145,23 @@ export default function SubServicePage() {
           ))}
         </SubServiceCardWrapper>
 
+        {faqs.length > 0 && <FAQSection faqs={faqs} serviceName={service.name} />}
+
         <RelatedServicesSection>
           <h2>Other Services You May Need</h2>
           <RelatedServicesGrid>
             {relatedServices.map((relatedService) => (
               <Link href={relatedService.link} key={relatedService.link}>
                 <RelatedServiceCard>
-                  <img src={relatedService.image} alt={`${relatedService.name} Sydney`} />
+                  <div className="image-wrapper">
+                    <Image
+                      src={relatedService.image}
+                      alt={`${relatedService.name} Sydney`}
+                      layout="fill"
+                      quality={85}
+                      objectFit="cover"
+                    />
+                  </div>
                   <h3>{relatedService.name}</h3>
                   <p>{relatedService.metaDescription}</p>
                   <span>Learn More →</span>
@@ -186,11 +211,12 @@ const SubServiceCard = styled(motion.div)`
     width: 330px;
   }
 
-  img {
+  .image-wrapper {
     width: 100%;
     height: 236px;
-    object-fit: cover;
     border-radius: 12px;
+    overflow: hidden;
+    position: relative;
   }
 
   h3 {
@@ -291,10 +317,11 @@ const RelatedServiceCard = styled.div`
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
 
-  img {
+  .image-wrapper {
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    overflow: hidden;
+    position: relative;
   }
 
   h3 {

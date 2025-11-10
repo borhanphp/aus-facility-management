@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { HiOutlineClock } from 'react-icons/hi2';
 import { RiCalendarCheckLine } from 'react-icons/ri';
 
@@ -9,21 +10,33 @@ export const Section4 = () => {
   return (
     <Container>
       <LeftSection>
-        <motion.img
-          {...FADE_IN_WHILE_IN_VIEW({ index: 0, as: motion.img })}
-          src="/images/home-1.jpg"
-          alt="placeholder"
-        />
-        <motion.img
-          {...FADE_IN_WHILE_IN_VIEW({ index: 1, as: motion.img })}
-          src="/images/home-2.jpg"
-          alt="placeholder"
-        />
-        <motion.img
-          {...FADE_IN_WHILE_IN_VIEW({ index: 2, as: motion.img })}
-          src="/images/home-3.jpg"
-          alt="placeholder"
-        />
+        <motion.div className="image-wrapper full-width" {...FADE_IN_WHILE_IN_VIEW({ index: 0, as: motion.div })}>
+          <Image
+            src="/images/home-1.jpg"
+            alt="Professional facility management services Sydney"
+            layout="fill"
+            quality={85}
+            objectFit="cover"
+          />
+        </motion.div>
+        <motion.div className="image-wrapper" {...FADE_IN_WHILE_IN_VIEW({ index: 1, as: motion.div })}>
+          <Image
+            src="/images/home-2.jpg"
+            alt="Commercial cleaning services Sydney"
+            layout="fill"
+            quality={85}
+            objectFit="cover"
+          />
+        </motion.div>
+        <motion.div className="image-wrapper" {...FADE_IN_WHILE_IN_VIEW({ index: 2, as: motion.div })}>
+          <Image
+            src="/images/home-3.jpg"
+            alt="Maintenance and repair services Sydney"
+            layout="fill"
+            quality={85}
+            objectFit="cover"
+          />
+        </motion.div>
       </LeftSection>
       <RightSection>
         <motion.h3 {...FADE_IN_WHILE_IN_VIEW({ index: 1, as: motion.h3 })}>
@@ -83,26 +96,23 @@ const LeftSection = styled.div`
     gap: 10px;
   }
 
-  img {
+  .image-wrapper {
     height: 250px;
     border-radius: 15px;
     max-width: 50%;
     flex-grow: 1;
-    object-fit: cover;
+    overflow: hidden;
+    position: relative;
 
     @media (max-width: 575px) {
       max-width: 100%;
       width: 100%;
-      object-fit: cover;
-      object-position: center;
     }
   }
 
-  img:nth-child(1) {
+  .image-wrapper.full-width {
     max-width: 100%;
     width: 100%;
-    object-fit: cover;
-    object-position: center;
   }
 `;
 

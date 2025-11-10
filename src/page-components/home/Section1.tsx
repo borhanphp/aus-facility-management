@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaCheckCircle } from 'react-icons/fa';
+import Image from 'next/image';
 
 import { HeaderForm } from '../../components/HeaderForm';
 import { FADE_IN_WHILE_IN_VIEW } from '../../constants/animations';
@@ -17,7 +18,17 @@ const BulletPoints = [
 export const Section1 = () => {
   return (
     <HeaderContainer>
-      <div>
+      <Image
+        src="/images/header-bg.png"
+        alt="Professional Facility Management Services in Sydney"
+        layout="fill"
+        priority
+        quality={85}
+        objectFit="cover"
+        objectPosition="center"
+      />
+      <div className="overlay" />
+      <div className="content">
         <LeftSection>
           <motion.h1 {...FADE_IN_WHILE_IN_VIEW({ as: motion.h1 })}>
             Best Reliable Facility Management Provider in Sydney
@@ -43,12 +54,23 @@ export const Section1 = () => {
 
 export const HeaderContainer = styled.header`
   max-width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/header-bg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
 
-  & > div {
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+  }
+
+  & > div.content {
+    position: relative;
+    z-index: 1;
     max-width: 1440px;
     margin: 0 auto;
     padding: 72px;

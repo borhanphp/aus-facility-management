@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
+import Image from 'next/image';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { LiaQuoteRightSolid } from 'react-icons/lia';
@@ -94,7 +95,15 @@ export const ReviewsSection = () => (
               <ReviewText>{testimonial.text}</ReviewText>
             </div>
             <ClientInfo>
-              <ClientImage src={testimonial.image} alt={testimonial.name} />
+              <ClientImageWrapper>
+                <Image
+                  src={testimonial.image}
+                  alt={`${testimonial.name} - ${testimonial.service} review`}
+                  layout="fill"
+                  quality={85}
+                  objectFit="cover"
+                />
+              </ClientImageWrapper>
               <ClientDetails>
                 <h5>{testimonial.name}</h5>
                 <p>{testimonial.service}</p>
@@ -224,12 +233,13 @@ const ClientInfo = styled.div`
   align-items: center;
 `;
 
-const ClientImage = styled.img`
+const ClientImageWrapper = styled.div`
   border-radius: 50%;
   width: 60px;
   height: 60px;
   margin-right: 20px;
-  object-fit: cover;
+  overflow: hidden;
+  position: relative;
 `;
 
 const ClientDetails = styled.div`

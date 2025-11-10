@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { AiOutlineArrowRight } from 'react-icons/ai';
@@ -12,7 +13,15 @@ export const ServicesSection = () => {
       {SERVICES.map((service, index) => (
         <Link href={`${service.link}`} key={service.link}>
           <ServiceCard key={index} {...FADE_IN_WHILE_IN_VIEW({ index, as: motion.div })}>
-            <img src={service.image} alt={service.name} />
+            <div className="image-wrapper">
+              <Image
+                src={service.image}
+                alt={`${service.name} Sydney - Professional Facility Management`}
+                layout="fill"
+                quality={85}
+                objectFit="cover"
+              />
+            </div>
             <ServiceInfo as={motion.div}>
               <h3>{service.name}</h3>
               <AiOutlineArrowRight size={20} />
@@ -59,10 +68,11 @@ const ServiceCard = styled(motion.a)`
     transform: translateY(-5px);
   }
 
-  img {
+  .image-wrapper {
     width: 100%;
     height: 250px;
-    object-fit: cover;
+    overflow: hidden;
+    position: relative;
 
     @media (max-width: 450px) {
       height: 200px;
