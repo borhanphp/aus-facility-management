@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Head from 'next/head';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import styled from 'styled-components';
@@ -12,12 +11,52 @@ import { DatePicker } from '../components/DatePicker';
 import MotionWrapper from '../framer-motion/MotionWrapper';
 import { MultiSelectInput } from '../components/MultiSelect';
 import { FADE_IN_WHILE_IN_VIEW } from '../constants/animations';
+import { SEO } from '../components/SEO';
+import { StructuredData } from '../components/StructuredData';
 
 export default function Contact() {
   const [selectedServices, setSelectedServices] = useState<{ label: string; value: string }[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const [submitting, setSubmitting] = useState(false);
+
+  const contactPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact AUS Facility Management',
+    description: 'Get in touch with AUS Facility Management for all your facility service needs in Sydney',
+    url: 'https://www.ausfacility.com.au/contact',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'AUS Facility Management',
+      url: 'https://www.ausfacility.com.au',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'Customer Service',
+        areaServed: 'AU',
+        availableLanguage: 'English',
+      },
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.ausfacility.com.au',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Contact',
+        item: 'https://www.ausfacility.com.au/contact',
+      },
+    ],
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,6 +90,16 @@ export default function Contact() {
   };
   return (
     <>
+      <SEO
+        title="Contact Us - AUS Facility Management Sydney"
+        description="Contact AUS Facility Management for professional cleaning, pest control, lawn care, construction, and facility services in Sydney. Get a free quote today!"
+        keywords="Contact AUS Facility Management, Sydney Facility Services Contact, Get Quote Sydney, Facility Management Enquiry, Sydney Services Contact"
+        ogImage="https://www.ausfacility.com.au/images/home-2.jpg"
+        canonicalUrl="https://www.ausfacility.com.au/contact"
+      />
+      <StructuredData data={contactPageSchema} />
+      <StructuredData data={breadcrumbSchema} />
+
       <MotionWrapper>
         <Container>
           <motion.h2 {...FADE_IN_WHILE_IN_VIEW({ index: 0, as: motion.h2 })}>Send Us A Message</motion.h2>
@@ -128,10 +177,6 @@ export default function Contact() {
           </FormContainer>
         </Container>
       </MotionWrapper>
-
-      <Head>
-        <title>AUS | Contact</title>
-      </Head>
     </>
   );
 }

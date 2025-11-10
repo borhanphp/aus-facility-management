@@ -1,14 +1,43 @@
-import Head from 'next/head';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 import MotionWrapper from '../framer-motion/MotionWrapper';
 import { FADE_IN_WHILE_IN_VIEW } from '../constants/animations';
 import { WhyChooseUsSection } from '../page-components/home/WhyChooseUsSection';
+import { SEO } from '../components/SEO';
+import { StructuredData } from '../components/StructuredData';
 
 export default function About() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.ausfacility.com.au',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'About Us',
+        item: 'https://www.ausfacility.com.au/about',
+      },
+    ],
+  };
+
   return (
     <>
+      <SEO
+        title="About Us - AUS Facility Management Sydney"
+        description="Learn about AUS Facility Management, Sydney's leading provider of professional cleaning, pest control, construction, and facility services. Committed to sustainability and excellence."
+        keywords="About AUS Facility Management, Facility Management Sydney, Professional Services Sydney, Sustainable Cleaning Sydney, Sydney Facility Services Company"
+        ogImage="https://www.ausfacility.com.au/images/about-1.jpg"
+        canonicalUrl="https://www.ausfacility.com.au/about"
+      />
+      <StructuredData data={breadcrumbSchema} />
+
       <MotionWrapper>
         <AboutContainer>
           <div className="text-container">
@@ -74,10 +103,6 @@ export default function About() {
         </MeetOutTeamContainer>
         <WhyChooseUsSection />
       </MotionWrapper>
-
-      <Head>
-        <title>AUS | About Us</title>
-      </Head>
     </>
   );
 }

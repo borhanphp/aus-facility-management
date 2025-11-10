@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -7,10 +6,40 @@ import MotionWrapper from '../../framer-motion/MotionWrapper';
 import { ServicesSection } from '../../components/ServicesSection';
 import { ReviewsSection } from '../../page-components/home/ReviewsSection';
 import { OurWorkProcessSection } from '../../page-components/home/OurWorkProcessSection';
+import { SEO } from '../../components/SEO';
+import { StructuredData } from '../../components/StructuredData';
 
 export default function Services() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.ausfacility.com.au',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://www.ausfacility.com.au/services',
+      },
+    ],
+  };
+
   return (
     <>
+      <SEO
+        title="Our Services - AUS Facility Management Sydney"
+        description="Comprehensive facility management services in Sydney. Professional cleaning, pest control, lawn care, construction, building maintenance, and recruitment services. Quality guaranteed."
+        keywords="Facility Management Services Sydney, Cleaning Services Sydney, Pest Control Sydney, Lawn Care Sydney, Construction Sydney, Building Maintenance Sydney, Job Recruitment Sydney, Professional Services Sydney"
+        ogImage="https://www.ausfacility.com.au/images/home-3.jpg"
+        canonicalUrl="https://www.ausfacility.com.au/services"
+      />
+      <StructuredData data={breadcrumbSchema} />
+
       <MotionWrapper>
         <TopHeader>
           <motion.h2>We offer a wide range of Facility </motion.h2>
@@ -26,10 +55,6 @@ export default function Services() {
         </ReviewSectionWrapper>
         <OurWorkProcessSection />
       </MotionWrapper>
-
-      <Head>
-        <title>AUS Facility Management</title>
-      </Head>
     </>
   );
 }

@@ -25,6 +25,37 @@ class MyDocument extends Document {
     }
   }
   render() {
+    const organizationSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'AUS Facility Management',
+      url: 'https://www.ausfacility.com.au',
+      logo: 'https://www.ausfacility.com.au/svg/aus-logo.svg',
+      description:
+        'Professional facility management services in Sydney including cleaning, pest control, construction, lawn care, and maintenance services.',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'Customer Service',
+        areaServed: 'AU',
+        availableLanguage: 'English',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Sydney',
+        addressRegion: 'NSW',
+        addressCountry: 'AU',
+      },
+      areaServed: {
+        '@type': 'GeoCircle',
+        geoMidpoint: {
+          '@type': 'GeoCoordinates',
+          latitude: '-33.8688',
+          longitude: '151.2093',
+        },
+        geoRadius: '50000',
+      },
+    };
+
     return (
       <Html lang="en">
         <Head>
@@ -32,6 +63,12 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="manifest" href="/site.webmanifest" />
+
+          {/* Organization Schema */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          />
 
           {/* add keywords for google search */}
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.1.0/100.min.css" />

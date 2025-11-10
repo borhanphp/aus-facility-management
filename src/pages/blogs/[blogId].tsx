@@ -12,6 +12,8 @@ import { contentfulClient } from '../../contentful';
 import { TopHeader } from '../../components/TopHeader';
 import { getBlogImageUrl } from '../../components/BlogCard';
 import MotionWrapper from '../../framer-motion/MotionWrapper';
+import { SEO } from '../../components/SEO';
+import { StructuredData } from '../../components/StructuredData';
 
 const options = {
   renderNode: {
@@ -62,31 +64,104 @@ export default function Blog() {
     fetchBlog();
   }, [blogId]);
 
+  const blogPostingSchema = blog
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: blog.title,
+        image: blog.thumbnail,
+        datePublished: blog.createdAt,
+        dateModified: blog.updatedAt,
+        author: {
+          '@type': 'Organization',
+          name: 'AUS Facility Management',
+          url: 'https://www.ausfacility.com.au',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'AUS Facility Management',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://www.ausfacility.com.au/svg/aus-logo.svg',
+          },
+        },
+        description: blog.shortSummary,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://www.ausfacility.com.au/blogs/${blogId}`,
+        },
+      }
+    : null;
+
+  const breadcrumbSchema = blog
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.ausfacility.com.au',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Blog',
+            item: 'https://www.ausfacility.com.au/blogs',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: blog.title,
+            item: `https://www.ausfacility.com.au/blogs/${blogId}`,
+          },
+        ],
+      }
+    : null;
+
   return (
-    <MotionWrapper>
-      <TopHeader>
-        <motion.h2>Blog</motion.h2>
-      </TopHeader>
-
-      {isLoading && (
-        <Container>
-          <Loader />
-        </Container>
+    <>
+      {blog && (
+        <>
+          <SEO
+            title={`${blog.title} | AUS Facility Management Blog`}
+            description={blog.shortSummary}
+            keywords={blog.tags?.join(', ') || 'Facility Management, Sydney Services'}
+            ogImage={blog.thumbnail}
+            ogType="article"
+            canonicalUrl={`https://www.ausfacility.com.au/blogs/${blogId}`}
+          />
+          {blogPostingSchema && <StructuredData data={blogPostingSchema} />}
+          {breadcrumbSchema && <StructuredData data={breadcrumbSchema} />}
+        </>
       )}
 
-      {!isLoading && blog?.title && blog?.thumbnail && blog?.shortSummary && (
-        <Container>
-          <TitleWrapper>
-            <h2>{blog?.title}</h2>
-            <p>Published on {format(blog?.createdAt, 'dd MMM yyyy')}</p>
-          </TitleWrapper>
-          <img src={blog?.thumbnail} alt={blog?.title} />
-          {/* <p>{blog?.shortSummary}</p> */}
+      <MotionWrapper>
+        <TopHeader>
+          <motion.h2>Blog</motion.h2>
+        </TopHeader>
 
-          <MainContentWrapper>{blog?.mainContent}</MainContentWrapper>
-        </Container>
-      )}
-    </MotionWrapper>
+        {isLoading && (
+          <Container>
+            <Loader />
+          </Container>
+        )}
+
+        {!isLoading && blog?.title && blog?.thumbnail && blog?.shortSummary && (
+          <Container>
+            <TitleWrapper>
+              <h2>{blog?.title}</h2>
+              <p>Published on {format(blog?.createdAt, 'dd MMM yyyy')}</p>
+            </TitleWrapper>
+            <img src={blog?.thumbnail} alt={blog?.title} />
+            {/* <p>{blog?.shortSummary}</p> */}
+
+            <MainContentWrapper>{blog?.mainContent}</MainContentWrapper>
+          </Container>
+        )}
+      </MotionWrapper>
+    </>
   );
 }
 

@@ -8,6 +8,8 @@ import { BlogCard } from '../../components/BlogCard';
 import { TopHeader } from '../../components/TopHeader';
 import MotionWrapper from '../../framer-motion/MotionWrapper';
 import { Loader } from '../../components/Loader';
+import { SEO } from '../../components/SEO';
+import { StructuredData } from '../../components/StructuredData';
 
 export interface IBlogCard {
   id: string;
@@ -34,6 +36,25 @@ export default function Blogs() {
   const [isLoading, setIsLoading] = useState(true);
   const [blogs, setBlogs] = useState<IBlogCard[]>([]);
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.ausfacility.com.au',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://www.ausfacility.com.au/blogs',
+      },
+    ],
+  };
+
   useEffect(() => {
     const fetchBlogs = async () => {
       if (blogs?.length) return;
@@ -59,15 +80,26 @@ export default function Blogs() {
   }, []);
 
   return (
-    <MotionWrapper>
-      <TopHeader>
-        <motion.h2>Blog</motion.h2>
-      </TopHeader>
+    <>
+      <SEO
+        title="Blog - AUS Facility Management Sydney"
+        description="Read the latest articles and insights from AUS Facility Management. Tips on cleaning, pest control, lawn care, facility maintenance, and more for Sydney homes and businesses."
+        keywords="Facility Management Blog, Cleaning Tips Sydney, Pest Control Advice, Lawn Care Tips, Home Maintenance Blog Sydney, Facility Services Articles"
+        ogImage="https://www.ausfacility.com.au/images/home-4.png"
+        canonicalUrl="https://www.ausfacility.com.au/blogs"
+      />
+      <StructuredData data={breadcrumbSchema} />
 
-      <Container>
-        {isLoading ? <Loader /> : blogs?.map((blog, index) => <BlogCard key={blog.id} {...blog} index={index} />)}
-      </Container>
-    </MotionWrapper>
+      <MotionWrapper>
+        <TopHeader>
+          <motion.h2>Blog</motion.h2>
+        </TopHeader>
+
+        <Container>
+          {isLoading ? <Loader /> : blogs?.map((blog, index) => <BlogCard key={blog.id} {...blog} index={index} />)}
+        </Container>
+      </MotionWrapper>
+    </>
   );
 }
 

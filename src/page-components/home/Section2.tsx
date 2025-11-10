@@ -7,7 +7,7 @@ export function Section2() {
   return (
     <Banner>
       <div>
-        <Title {...FADE_IN_WHILE_IN_VIEW({ as: motion.h1 })}>
+        <Title {...FADE_IN_WHILE_IN_VIEW({ as: motion.h2 })}>
           Top-Rated Facility Management service provider in Sydney
         </Title>
         <Stats>
@@ -49,7 +49,7 @@ const Banner = styled.section`
   }
 `;
 
-const Title = styled(motion.h1)`
+const Title = styled(motion.h2)`
   font-size: 36px;
   max-width: 600px;
   font-weight: 500;
