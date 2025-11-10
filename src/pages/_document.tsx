@@ -71,16 +71,8 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
           <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
 
-          {/* Preload critical images with high priority */}
+          {/* Preload critical images */}
           <link rel="preload" as="image" href="/images/header-bg.webp" />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                // Add fetchpriority to preload link
-                document.querySelector('link[href="/images/header-bg.webp"]')?.setAttribute('fetchpriority', 'high');
-              `,
-            }}
-          />
 
           {/* Optimized font loading - async with font-display swap */}
           <link
