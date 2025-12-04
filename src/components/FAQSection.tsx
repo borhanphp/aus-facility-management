@@ -47,7 +47,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ faqs, serviceName }) => 
             <FAQItem key={index}>
               <FAQQuestion onClick={() => toggleFAQ(index)}>
                 <h3>{faq.question}</h3>
-                <IconWrapper isOpen={openIndex === index}>
+                <IconWrapper $isOpen={openIndex === index}>
                   <FaChevronDown />
                 </IconWrapper>
               </FAQQuestion>
@@ -142,13 +142,13 @@ const FAQQuestion = styled.div`
   }
 `;
 
-const IconWrapper = styled.div<{ isOpen: boolean }>`
+const IconWrapper = styled.div<{ $isOpen: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--green-primary);
   transition: transform 0.3s;
-  transform: ${(props) => (props.isOpen ? 'rotate(180deg)' : 'rotate(0)')};
+  transform: ${(props) => (props.$isOpen ? 'rotate(180deg)' : 'rotate(0)')};
 
   svg {
     font-size: 20px;

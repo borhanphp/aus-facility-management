@@ -36,7 +36,7 @@ export const HeaderContainer = styled.header<Props>`
     padding: 40px 1.5%;
   }
 
-  h2 {
+  h1 {
     font-size: 56px;
     font-weight: 600;
     line-height: 70px;

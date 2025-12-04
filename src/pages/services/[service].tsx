@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
@@ -14,6 +15,12 @@ import { StructuredData } from '../../components/StructuredData';
 import { Breadcrumb } from '../../components/Breadcrumb';
 import { FAQSection } from '../../components/FAQSection';
 import { SERVICE_FAQS } from '../../constants/faqs';
+import { ServiceContentSection } from '../../components/ServiceContentSection';
+import { SERVICE_CONTENT } from '../../constants/serviceContent';
+import { GoogleReviews } from '../../components/GoogleReviews';
+import { SERVICE_TESTIMONIALS } from '../../constants/serviceTestimonials';
+import { TrustBadges } from '../../components/TrustBadges';
+import { ServiceAreas } from '../../components/ServiceAreas';
 
 export default function SubServicePage() {
   const router = useRouter();
@@ -93,12 +100,67 @@ export default function SubServicePage() {
     ],
   };
 
+  const localBusinessSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'AUS Facility Management',
+    image: 'https://www.ausfacility.com.au/svg/aus-logo.svg',
+    url: 'https://www.ausfacility.com.au',
+    telephone: '+61-430-188-729',
+    priceRange: '$$',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Sydney',
+      addressRegion: 'NSW',
+      addressCountry: 'AU',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: -33.8688,
+      longitude: 151.2093,
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '23:59',
+      },
+    ],
+    areaServed: {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: -33.8688,
+        longitude: 151.2093,
+      },
+      geoRadius: '50000',
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: service.name,
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: service.name,
+            description: service.metaDescription,
+          },
+        },
+      ],
+    },
+  };
+
   // Get related services (exclude current service)
   const relatedServices = SERVICES.filter((s) => s.link !== service.link).slice(0, 3);
 
   // Get FAQ data for this service
   const serviceSlug = router.query.service as string;
   const faqs = SERVICE_FAQS[serviceSlug as keyof typeof SERVICE_FAQS] || [];
+
+  // Get testimonials for this service
+  const testimonials = SERVICE_TESTIMONIALS[serviceSlug as keyof typeof SERVICE_TESTIMONIALS] || [];
 
   return (
     <>
@@ -109,12 +171,15 @@ export default function SubServicePage() {
         ogImage={`https://www.ausfacility.com.au${service.image}`}
         canonicalUrl={`https://www.ausfacility.com.au${service.link}`}
       />
-      <StructuredData data={serviceSchema} />
-      <StructuredData data={breadcrumbSchema} />
+      <React.Fragment key="structured-data">
+        <StructuredData data={serviceSchema} />
+        <StructuredData data={breadcrumbSchema} />
+        <StructuredData data={localBusinessSchema} />
+      </React.Fragment>
 
       <MotionWrapper>
         <TopHeader $headerbg={service.image} $bgposition={getBgPosition(service.name)}>
-          <h2>{service?.name}</h2>
+          <h1>{service?.name}</h1>
         </TopHeader>
 
         <Breadcrumb
@@ -125,13 +190,22 @@ export default function SubServicePage() {
           ]}
         />
 
+        {SERVICE_CONTENT[serviceSlug as keyof typeof SERVICE_CONTENT] && (
+          <ServiceContentSection
+            content={SERVICE_CONTENT[serviceSlug as keyof typeof SERVICE_CONTENT]}
+            serviceName={service.name}
+          />
+        )}
+
+        <TrustBadges />
+
         <SubServiceCardWrapper>
           {service?.subServices.map((subService, index) => (
             <SubServiceCard {...FADE_IN_WHILE_IN_VIEW({ index, as: motion.div })} key={subService.service}>
               <div className="image-wrapper">
                 <Image
                   src={subService.image}
-                  alt={`${subService.service} - ${service.name} Sydney`}
+                  alt={`Professional ${subService.service.toLowerCase()} service in Sydney - ${service.name}`}
                   layout="fill"
                   quality={85}
                   objectFit="cover"
@@ -147,6 +221,10 @@ export default function SubServicePage() {
 
         {faqs.length > 0 && <FAQSection faqs={faqs} serviceName={service.name} />}
 
+        <GoogleReviews serviceName={service.name} fallbackReviews={testimonials} />
+
+        <ServiceAreas />
+
         <RelatedServicesSection>
           <h2>Other Services You May Need</h2>
           <RelatedServicesGrid>
@@ -156,7 +234,7 @@ export default function SubServicePage() {
                   <div className="image-wrapper">
                     <Image
                       src={relatedService.image}
-                      alt={`${relatedService.name} Sydney`}
+                      alt={`Professional ${relatedService.name.toLowerCase()} services in Sydney - quality facility management`}
                       layout="fill"
                       quality={85}
                       objectFit="cover"
@@ -309,7 +387,9 @@ const RelatedServiceCard = styled.div`
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   border: 1px solid #e0e0e0;
 
   &:hover {

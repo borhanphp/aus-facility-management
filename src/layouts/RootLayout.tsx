@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { NavBar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { NavBarMobile } from '../components/NavbarMobile';
+import { ChatWidget } from '../components/ChatWidget';
 
 interface Props {
   children: ReactNode;
@@ -16,6 +17,7 @@ const RootLayout = ({ children }: Props) => {
       <NavBarMobile />
       <MainContainer>{children}</MainContainer>
       <Footer />
+      <ChatWidget />
     </>
   );
 };

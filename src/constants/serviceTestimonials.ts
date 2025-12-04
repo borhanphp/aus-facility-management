@@ -1,0 +1,246 @@
+export interface Testimonial {
+  name: string;
+  location: string;
+  service: string;
+  rating: number;
+  text: string;
+  image: string;
+  date: string;
+}
+
+export const SERVICE_TESTIMONIALS: Record<string, Testimonial[]> = {
+  'cleaning-services': [
+    {
+      name: 'Sarah Mitchell',
+      location: 'Bondi, Sydney',
+      service: 'End of Lease Cleaning',
+      rating: 5,
+      text: "Absolutely outstanding service! The team did an incredible end of lease clean on my apartment. Every corner was spotless, and I got my full bond back without any issues. They were punctual, professional, and the attention to detail was impressive. Highly recommend!",
+      image: '/images/review-1.png',
+      date: '2024-11-15',
+    },
+    {
+      name: 'Michael Chen',
+      location: 'Parramatta, Sydney',
+      service: 'Office Cleaning',
+      rating: 5,
+      text: "We've been using AUS Facility Management for our office cleaning for over a year now. The consistency and quality are exceptional. Our office always looks pristine, and their eco-friendly products align with our company values. The team is reliable and trustworthy.",
+      image: '/images/review-2.png',
+      date: '2024-10-28',
+    },
+    {
+      name: 'Emma Thompson',
+      location: 'North Shore, Sydney',
+      service: 'Domestic Cleaning',
+      rating: 5,
+      text: "I book fortnightly house cleaning with them and it's been life-changing! Coming home to a clean house means I can actually enjoy my weekends. The cleaners are friendly, efficient, and respectful of our home. Worth every cent!",
+      image: '/images/review-3.png',
+      date: '2024-11-02',
+    },
+    {
+      name: 'David Rahman',
+      location: 'Eastern Suburbs, Sydney',
+      service: 'Deep Cleaning',
+      rating: 5,
+      text: "Called them for a deep clean before hosting family from overseas. They transformed our home! Areas I'd neglected for years were spotless. The kitchen, bathrooms, and windows looked brand new. Professional, thorough, and reasonably priced.",
+      image: '/images/review-4.png',
+      date: '2024-10-18',
+    },
+  ],
+
+  'lawn-and-gardening': [
+    {
+      name: 'Jennifer Williams',
+      location: 'Castle Hill, Sydney',
+      service: 'Garden Maintenance',
+      rating: 5,
+      text: "My garden has never looked better! The team completely transformed my overgrown yard into a beautiful, manageable space. They're knowledgeable about plants, professional, and their ongoing maintenance keeps everything looking perfect. Highly skilled gardeners!",
+      image: '/images/review-1.png',
+      date: '2024-11-10',
+    },
+    {
+      name: 'Robert Taylor',
+      location: 'Northern Beaches, Sydney',
+      service: 'Lawn Mowing',
+      rating: 5,
+      text: "Reliable, professional lawn mowing service. They come every fortnight like clockwork, always do a great job, and the pricing is very fair. My lawn looks like a golf course! Edges are perfect, and they clean up all the clippings. Very happy customer.",
+      image: '/images/review-2.png',
+      date: '2024-10-22',
+    },
+    {
+      name: 'Lisa Anderson',
+      location: 'Inner West, Sydney',
+      service: 'Landscaping',
+      rating: 5,
+      text: "We hired them for a complete backyard renovation and the results exceeded our expectations. From design to execution, everything was professional. They created a beautiful native garden that's low maintenance and perfect for our Sydney climate. Love it!",
+      image: '/images/review-3.png',
+      date: '2024-09-30',
+    },
+    {
+      name: 'Mark Nguyen',
+      location: 'Penrith, Sydney',
+      service: 'Weed Control',
+      rating: 5,
+      text: "Had a serious weed problem that I couldn't control on my own. Their team assessed the issue, explained the treatment plan, and within weeks my lawn was healthy and weed-free. They use eco-friendly products which was important to us. Great service!",
+      image: '/images/review-4.png',
+      date: '2024-11-05',
+    },
+  ],
+
+  'pest-control-and-termite': [
+    {
+      name: 'Amanda Roberts',
+      location: 'Chatswood, Sydney',
+      service: 'Termite Inspection',
+      rating: 5,
+      text: "Professional termite inspection before purchasing our home. The inspector was thorough, used thermal imaging technology, and provided a detailed report within 24 hours. Their expertise gave us confidence in our purchase decision. Highly recommended for peace of mind!",
+      image: '/images/review-1.png',
+      date: '2024-11-12',
+    },
+    {
+      name: 'James Martinez',
+      location: 'Liverpool, Sydney',
+      service: 'Cockroach Control',
+      rating: 5,
+      text: "We had a persistent cockroach problem that other pest controllers couldn't solve. AUS Facility Management identified the source, treated comprehensively, and the problem was gone within days. Six months later, still no roaches! Professional and effective service.",
+      image: '/images/review-2.png',
+      date: '2024-10-20',
+    },
+    {
+      name: 'Sophie Kim',
+      location: 'CBD, Sydney',
+      service: 'Commercial Pest Control',
+      rating: 5,
+      text: "As a restaurant owner, pest control is critical. Their quarterly maintenance program keeps our kitchen pest-free and compliant with health regulations. The technicians are discreet, work around our schedule, and document everything properly. Excellent commercial service!",
+      image: '/images/review-3.png',
+      date: '2024-11-01',
+    },
+    {
+      name: 'Thomas Lee',
+      location: 'Sutherland, Sydney',
+      service: 'Rodent Control',
+      rating: 5,
+      text: "Discovered rats in our roof and panicked. Called them and they came out same day! Identified entry points, set up baiting stations, sealed access areas, and monitored until the problem was completely resolved. Fast, effective, and the service warranty gave us peace of mind.",
+      image: '/images/review-4.png',
+      date: '2024-10-15',
+    },
+  ],
+
+  'facility-management': [
+    {
+      name: 'Catherine Wilson',
+      location: 'North Sydney, Sydney',
+      service: 'Building Management',
+      rating: 5,
+      text: "Managing our commercial building has been effortless since partnering with AUS Facility Management. They handle everything from maintenance to tenant requests to compliance. Their proactive approach has actually reduced our operating costs. Exceptional facility management service!",
+      image: '/images/review-1.png',
+      date: '2024-11-08',
+    },
+    {
+      name: 'Andrew Brown',
+      location: 'Macquarie Park, Sydney',
+      service: 'Preventive Maintenance',
+      rating: 5,
+      text: "Their preventive maintenance program has eliminated most of our emergency repair costs. HVAC, electrical, plumbing - everything runs smoothly now. The reporting dashboard gives us complete visibility, and their team is always responsive. Great ROI on facility management.",
+      image: '/images/review-2.png',
+      date: '2024-10-25',
+    },
+    {
+      name: 'Michelle Wong',
+      location: 'Strathfield, Sydney',
+      service: 'Strata Facility Management',
+      rating: 5,
+      text: "As a strata manager, having a reliable facility partner is essential. They manage three of our buildings and the feedback from residents has been overwhelmingly positive. Professional tradespeople, quick response times, and reasonable pricing. Highly recommended for strata properties!",
+      image: '/images/review-3.png',
+      date: '2024-11-03',
+    },
+    {
+      name: 'Peter Davidson',
+      location: 'Ryde, Sydney',
+      service: 'Emergency Repairs',
+      rating: 5,
+      text: "Called them at 2am for a major plumbing leak. Their emergency team arrived within an hour, fixed the issue professionally, and prevented major water damage. This 24/7 reliability is exactly what we need for our facility. Outstanding service in a crisis situation!",
+      image: '/images/review-4.png',
+      date: '2024-10-12',
+    },
+  ],
+
+  'construction-services': [
+    {
+      name: 'Rebecca Johnson',
+      location: 'Manly, Sydney',
+      service: 'Bathroom Renovation',
+      rating: 5,
+      text: "Our bathroom renovation was completed on time, within budget, and the quality is outstanding! The project manager kept us informed every step, the tradespeople were skilled and respectful, and the attention to detail was impressive. We love our new bathroom!",
+      image: '/images/review-1.png',
+      date: '2024-11-06',
+    },
+    {
+      name: 'Daniel Cooper',
+      location: 'Blacktown, Sydney',
+      service: 'Granny Flat Construction',
+      rating: 5,
+      text: "From design to final handover, building our granny flat was a smooth process. They handled council approvals, coordinated all trades, and delivered exactly what was promised. The quality of construction is excellent and it's already generating rental income. Highly recommend!",
+      image: '/images/review-2.png',
+      date: '2024-09-28',
+    },
+    {
+      name: 'Karen Patel',
+      location: 'Hurstville, Sydney',
+      service: 'House Extension',
+      rating: 5,
+      text: "Added a second story to our home and couldn't be happier with the result. The design incorporated our ideas perfectly, construction was well-managed with minimal disruption, and the quality exceeded expectations. They've transformed our family home!",
+      image: '/images/review-3.png',
+      date: '2024-10-10',
+    },
+    {
+      name: 'Christopher Gray',
+      location: 'Hornsby, Sydney',
+      service: 'Knockdown Rebuild',
+      rating: 5,
+      text: "Complete knockdown and rebuild of our property. The entire process was professionally managed from demolition to final touches. Great communication, quality workmanship, and they delivered on schedule. Our new home is everything we dreamed of. Worth every dollar!",
+      image: '/images/review-4.png',
+      date: '2024-08-15',
+    },
+  ],
+
+  'job-recruitment': [
+    {
+      name: 'Helen Scott',
+      location: 'Sydney CBD',
+      service: 'Facility Manager Recruitment',
+      rating: 5,
+      text: "We needed an experienced facility manager urgently, and they delivered! Within a week, we had three excellent candidates. The person they placed has been outstanding - qualified, reliable, and a perfect cultural fit. Their screening process is thorough and effective.",
+      image: '/images/review-1.png',
+      date: '2024-11-04',
+    },
+    {
+      name: 'Marcus Thompson',
+      location: 'Bankstown, Sydney',
+      service: 'Cleaning Staff Placement',
+      rating: 5,
+      text: "As a growing cleaning company, finding reliable staff was challenging. AUS Facility Management consistently provides quality candidates who are pre-screened and trained. Their replacement guarantee shows they stand behind their placements. Great recruitment partner!",
+      image: '/images/review-2.png',
+      date: '2024-10-19',
+    },
+    {
+      name: 'Olivia Zhang',
+      location: 'Newtown, Sydney',
+      service: 'Job Seeker',
+      rating: 5,
+      text: "I was looking for facility management work and they were incredibly helpful. Matched me with a perfect position within two weeks, helped with interview preparation, and followed up after placement. Professional, supportive recruitment service that genuinely cares about candidates!",
+      image: '/images/review-3.png',
+      date: '2024-11-07',
+    },
+    {
+      name: 'Steven Murphy',
+      location: 'Campbelltown, Sydney',
+      service: 'Construction Workers',
+      rating: 5,
+      text: "Needed skilled laborers for a tight deadline project. They provided quality workers quickly, handled all payroll administration, and the team they sent was hardworking and professional. Their flexible staffing solutions saved our project timeline. Excellent service!",
+      image: '/images/review-4.png',
+      date: '2024-10-08',
+    },
+  ],
+};
+

@@ -4,16 +4,60 @@ import { Section1 } from '../page-components/home/Section1';
 import { Section2 } from '../page-components/home/Section2';
 import { SEO } from '../components/SEO';
 import { StructuredData } from '../components/StructuredData';
+import { GoogleReviews } from '../components/GoogleReviews';
 
 // Lazy load below-the-fold components
-const Section3 = dynamic(() => import('../page-components/home/Section3').then(mod => mod.Section3));
-const Section4 = dynamic(() => import('../page-components/home/Section4').then(mod => mod.Section4));
-const Section5 = dynamic(() => import('../page-components/home/Section5').then(mod => mod.Section5));
-const WhyChooseUsSection = dynamic(() => import('../page-components/home/WhyChooseUsSection').then(mod => mod.WhyChooseUsSection));
-const ReviewsSection = dynamic(() => import('../page-components/home/ReviewsSection').then(mod => mod.ReviewsSection));
-const OurWorkProcessSection = dynamic(() => import('../page-components/home/OurWorkProcessSection').then(mod => mod.OurWorkProcessSection));
+const Section3 = dynamic(() => import('../page-components/home/Section3').then((mod) => mod.Section3));
+const Section4 = dynamic(() => import('../page-components/home/Section4').then((mod) => mod.Section4));
+const Section5 = dynamic(() => import('../page-components/home/Section5').then((mod) => mod.Section5));
+const WhyChooseUsSection = dynamic(() =>
+  import('../page-components/home/WhyChooseUsSection').then((mod) => mod.WhyChooseUsSection)
+);
+const OurWorkProcessSection = dynamic(() =>
+  import('../page-components/home/OurWorkProcessSection').then((mod) => mod.OurWorkProcessSection)
+);
 
 export default function Home() {
+  // Fallback testimonials for Google Reviews (if API doesn't load)
+  const fallbackReviews = [
+    {
+      name: 'Alex Peterson',
+      location: 'Sydney',
+      service: 'Facility Management',
+      rating: 5,
+      text: "Facing a plumbing emergency, I contacted AUS Facility Management, and they responded promptly. Their quick and efficient repair saved me from a potential disaster. I'm grateful for their reliable service and will definitely call on them for future needs.",
+      image: '/images/review-1.png',
+      date: '2024-10-15',
+    },
+    {
+      name: 'Mark Rodriguez',
+      location: 'Parramatta, Sydney',
+      service: 'Cleaning Services',
+      rating: 5,
+      text: "I've used AUS Facility Management for various repairs around my home, and they never disappoint. From fixing faucets to regular maintenance checks, their team is reliable and provides great customer service. It's a relief to have a trustworthy service.",
+      image: '/images/review-2.png',
+      date: '2024-10-20',
+    },
+    {
+      name: 'Ryan Johnson',
+      location: 'North Shore, Sydney',
+      service: 'Construction Services',
+      rating: 5,
+      text: "AUS Facility Management turned my outdated bathroom into a spa-like retreat. The attention to detail, creative solutions, and professionalism were outstanding. I'm thrilled with the transformation and would choose them for any future projects.",
+      image: '/images/review-3.png',
+      date: '2024-10-25',
+    },
+    {
+      name: 'Tom Benson',
+      location: 'Eastern Suburbs, Sydney',
+      service: 'Pest Control',
+      rating: 5,
+      text: "I signed up for AUS Facility Management's services, and it's been a great experience. Their team is thorough, and their checks have prevented many issues. It's comforting to know my home is in good hands. Great service!",
+      image: '/images/review-4.png',
+      date: '2024-11-01',
+    },
+  ];
+
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -136,7 +180,7 @@ export default function Home() {
         <Section4 />
         <Section5 />
         <WhyChooseUsSection />
-        <ReviewsSection />
+        <GoogleReviews serviceName="All Services" fallbackReviews={fallbackReviews} />
         <OurWorkProcessSection />
       </MotionWrapper>
     </>
